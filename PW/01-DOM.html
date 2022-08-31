@@ -7,34 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-
-
-    <div id="'root"></div>
+    <div id="root"></div>
     <script>
+        // Criando um novo elemento <p> via JS
+        let parag = document.createElement('p')
+        parag.textContent = 'Este parágrafo foi criado com JavaScript'
 
-        //Criando um novo elemnto <p> via JS
-            let parag = document.createElement('p')
-            parag.textContent = 'Este parágrafo foi criado com JavaScript'
-
-            //vamos colocar o parágrafo criado dentro da div id root;
-            //Para isso devemos "capturar" essa div.
-
+        // Vamos colocar o parágrafo criado dentro da div cujo id é root.
+        // Para isso, devemos primeiro "capturar" essa div.
         let root = document.getElementById('root')
 
-        //Com a div capturada, podemos colocar o parágrafo dentro dela
+        // Com a div capturada, podemos colocar o parágrafo dentro dela
         root.appendChild(parag)
 
-        //Criando uma nova div
+        // Criando uma nova div
         let novaDiv = document.createElement('div')
 
         novaDiv.textContent = 'DIV criada com JavaScript'
-        novaDov.style.border = '3px dotted green'
+        novaDiv.style.border = '3px dotted green'
         novaDiv.style.backgroundColor = 'limegreen'
         novaDiv.id = 'minhaDiv'
 
         root.appendChild(novaDiv)
     </script>
-
-
 </body>
 </html>
