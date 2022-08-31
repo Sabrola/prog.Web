@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .formata {
+            font-family: 'Courier New', monospace;
+            color: blue;
+            background-color: powderblue;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .alerta {
+            border-radius: 4px;
+            border: 2px solid red;
+            background-color: khaki;
+            padding: 10px;
+            text-align: center;
+            font-family: Calibri, Arial, Suns-Serif;
+            color: white;
+            padding: 10px;
+        }
+        .Greet {
+            background-color: indigo;
+            border-radius: 8px;
+            color: white;
+            box-shadow: 2px 2px 6px (rgba 0, 0, 0, 0.20);
+            padding: 12px;
+            text-align: center;
+
+        }
+        .warning{
+            background-color: red;
+            text-align: center;
+        }
+
+        .warning-body{
+            color: black;
+            background-color: yellow;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        //Função que recebe duas props e retornam um elemento JSX
+        //Props são SEMPRE recebidos coomo OBJETO (entre chaves)
+        function Greetings({msg, name}) {
+            return <div className ="msg"> {msg}, {name}! </div>
+        }
+
+        const greeting1 = Greetings({name: '/Tia Bita', mes: 'Bom dia'})
+
+        const container=
+        <div id='container'>
+            {/*Variável*/}
+            {Ggeeting1}
+
+            {/*Chamando a função diferentemente*/}
+            {Greetings({meg: 'Boa noite', name: 'Cinderella'})}
+
+            {/*Usando sintaxe JSX*/}
+            <Greetings msg='Boa tarde' name='Carls'/>
+        </div>
+
+        const root = reacoDOM.createRoot(document.getElementById('root'))
+        root.render(container)
+    </script>
+    
+</body>
+</html>
