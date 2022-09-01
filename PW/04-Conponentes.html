@@ -59,7 +59,7 @@
         // A mesma função acima, no formato arrow function
         const Greeting = ({msg, name}) => <div className="greet"> {msg}, {name}! </div>
 
-        const greet1 = Greeting({name: 'Seu Bita', msg: 'Bom dia'})
+        const greet1 = Greeting({name: 'Carls', msg: 'Bom dia'})
 
         // Função que recebe apenas um objeto prop e as renderiza usando espalhamento
         const Message = props => <div className="msg" {...props} />
@@ -78,7 +78,7 @@
                 {greet1} 
                 
                 {/* Chamando a função diretamente */}
-                {Greeting({msg: 'Boa noite', name: 'Cinderela'})}
+                {Greeting({msg: 'Boa noite', name: 'Cinderella'})}
                 
                 {/* Usando a sintaxe JSX */}
                 <Greeting msg="Boa tarde" name="moçada" />
