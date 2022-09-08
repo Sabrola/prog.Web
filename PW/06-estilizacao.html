@@ -19,7 +19,101 @@
 
     <script type="text/babel">
 
+        /* Para esécificar estilos CSS em JSX, é necessário atentar-se para as seguintes regras:
+                
+                1. O nome das propriedades não pode ter hífen; deve-se usar camelCase ao invés disso. 
+                    Ex. background-color deve ser escrito bacjgroundColor.
+                
+                2. Yodos os valores de propriedade que não forem 100% númericos devem vir entre aspas.
+                    Ex. 30px => "30 px".
+                
+                3. As diferentes propriedades são seáradas por VÍRGULA (e não ponto-vírgula, como em CSS).
+                
+                O estilo abaixo em CSS puro ficaria:
 
+                const style1 = {
+                    background-color: orange;
+                    font-size: 30px;
+                    font-family: "Courier New", monospace;
+                    border: 4px dotted blue;
+                }
+         */
+
+        const style1 = {
+            backgroundColor: 'orange',
+            fontSize: '30px',
+            fontFamily: '"Courier New", monospace',
+            border: '4px dotted blue'
+        }
+
+        /* Componenete de caixa altamente personalizado. Recebe tanto props personalizados (style e size)
+            quanto props padrão (..props). Além disso, provê um valor padrão para a prop size caso o valor
+            desta não tenha sido passado. */
+        
+        const boxItalic = ({style, size = 'small', ...props}) =>
+            <div
+                className={`box box--${size}`}
+                style={{ fontStyle: 'italic'}}
+                {...props}
+            />
+    
+        const container = 
+            <>
+
+            { /* É possível aplicar mais de uma classe CSS a um elemento usando o atributo ClassName.
+               Nos casos abaixo, foram aplicados os casos box e box--xxxx. Elas foram especificados
+               com um espaço de separacão entre elas. */}
+
+            <div className="box box--small"> Box Pequeno. 01</div>
+            <div className="box box--medium"> Box Médio. 01</div>
+            
+            {/* Pode-se usar className e style ao mesmo tempo. Os estilos definidos em style se sobrepõe
+                aos especificados nas classes. */}
+            
+            <div className="box box--large" syle={style1}> Boz Grande. 01</div>
+
+            {/* Com frêquencia, especificamos as regras de estilo dentro do próprio atributo style. Quando
+                fazemos isso, as refras têm de vir entre chaves duplas: {{}} */}
+            
+            <div className="box box--Small" style={{ backgroundColor: 'lightblue', fontWeight:'bold'}}>
+            Box Pequeno. 02
+            </div>
+
+            <div className="box box--medium"
+                style={{
+                    backgroundColor: 'pink',
+                    borderColor: 'red',
+                    fontStyle: 'italic'
+                }}> Box Médio. 02 </div>
+            
+            {/* Usando o componente boxItalic.
+                No primeiro caso não será especificado o valor da prop size; então serão criados com size = small */}
+            
+            <boxItalic
+                style={{
+                    backgroundColor: 'tomato',
+                    color: 'beige'
+                }}
+                id="boxItalic"> Box Italic 01. </boxItalic>
+
+            {/* Neste segundo exemplo, a prop size será especificada explicitamente. Além disso, será refinada
+                a propriedade fontStyle do estilo, anulando o estilo padrão do componente */}
+            
+            <boxItalic
+                id="boxItalic02"
+                tittle="Exemplo de estilização em react"
+                size="medium"
+                style={{
+                    borderColor: 'orange',
+                    color: 'white',
+                    backgroundColor: 'violet',
+                    fontStyle: 'normal'
+                }}> Box Italic. 02 </boxItalic>
+
+            </>
+
+        const root = reactDOM.createRoot(document.getElementById('root'))
+        root.render(container)
 
     </script>
     
