@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="06.css">
     <title>Document</title>
-    <style>
-        
-    </style>
 </head>
 <body>
+    <div id="output"></div>
+    
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -19,56 +17,88 @@
 
     <script type="text/babel">
 
-        function form() {
-            
-            let name
-            //let error = ""
+        function Form() {
 
-            /* O método react.setCase(() cria uma variável de estado e retorna um vetor
-                com dois valores.
-            O primeiro valor retornado é o valor va variável de estado.
-            Esse valor é SOMENTE leitura.
-            O segundo valor é uma função que deve utilizada ára atualizar o valor
-                da variável de estado.
-            O valoe inicial da variável de estado é determinado pelo parâmetro de useState(). */
+            //let name
+            //let error = ''
 
+            /*
+                O método React.setState() cria uma variável de estado
+                e retorna um vetor com dois valores.
+                O primeiro valor retornado é o valor da variável de estado.
+                Esse valor é SOMENTE LEITURA.
+                O segundo valor é uma função que deve ser utilizada para 
+                atualizar o valor da variável de estado.
+                O valor inicial da variável de estado é determinado pelo
+                parâmetro de useState().
+            */
 
-            //Declarando uma variável de estado
-            const [error, setError] = react.useState('')
+            // Declarando uma variável de estado
+            const [error, seterror] = React.useState('')
+
+            //Declarando outra variavel de estado para criar um componente controlado.
+            const [name, setNAME] = React.useState('')
+
+            /* Componenetes React foram feitos para serem reutilizados. Por isso,
+                não se pode usae o atributo 'id' em elementos que pertecem a um componente,
+                porque isso pode levar a mais de um elemento com o mesmo id na mesma página,
+                o que é proibido.
+                
+            Em vez de 'id', usamos um recurso (hook) do React chamado useRef(). */
+
+            const campoName = React.useRef()
 
             function handleChange(event) {
-                name = document.getElementById('campo-nome').value
+                //name = document.getElementById('campo-name').value
+                //name = event.target.value
                 
                 if(name !== name.toUpperCase()) {
-                    setError = 'O nome precisa estar en letras MAIÚSCULAS!!'
-                } else {
-                    setError = ''
+                    seterror('O name precisa estar em letras MAIÚSCULAS!')
+                }
+                else {
+                    seterror('')
                 }
 
-                document.getElementById('result').textContent = name
+                //document.getElementById('result').textContent = name
             }
 
             function handleSubmit(event) {
-                event.preventDefault() //Evita o recarregamento da página
-                alert(`Olá ${nome}!`)
+                event.preventDefault()
+                alert(`Olá, ${name}!`)
             }
 
             return (
                 <form onSubmit={handleSubmit}>
-                
-                {/*{ Em JSX, o atributo HTML 'for' deve ser renomeado para "htmlFor"} */}
-                <label htmlFor="campo-nome" onChange={handleChange} />
-                <br />
-                <div id="result">{nome}</div>
-                <div style={{ color: "red" }}> {error} </div>
-                <button type="submit"> Enviar </button>
+                    {/*
+                        Em JSX, o atributo HTML "for" deve ser renameado para
+                        "htmlFor".
+                    */}
+                    <label>
+                    <span> Nome </span>
 
+                    {/* Este input é um elemento controlado. Seu vaçue é mantido
+                        em uma variável de estado, que é atualizada no evento onChange. */}
+                    
+                    <input onChange={handleChange} value={name}/>
+                    </label>
+                    <br />
+                    <div>{name}</div>
+                    <div style={{ color: "red" }}>{error}</div>
+                    <button type="submit">Enviar</button>
                 </form>
             )
         }
 
-    const root = reactDOM.createRoot(document.getElementById('root'))
-    root.render(<form />)
+        //Duplicando o componente na página.
+        const container = 
+            <>
+
+            <form />
+            <form />
+            </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(container)
 
     </script>
     
